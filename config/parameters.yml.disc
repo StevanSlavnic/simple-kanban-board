@@ -1,0 +1,8 @@
+parameters:
+    env(DATABASE_URL): mysql://a51-kanban:a51-kanban@a51-kanban_devdb:3306/a51-kanban
+    base_url: 'a51-kanban-dev.com'
+
+
+
+
+

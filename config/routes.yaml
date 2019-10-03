@@ -1,0 +1,5 @@
+card_rest:
+    path: /
+    resource: 'Controller\CardRestController::index'
+
+
