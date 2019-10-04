@@ -45,10 +45,10 @@ RUN docker-php-ext-install sysvsem
 
 RUN useradd -ms /bin/bash a51-kanban
 
-#### SSH
-ADD ./ssh ./ssh
-RUN cp -r ./ssh /root/.ssh
-
-RUN chmod 400 ~/.ssh/id_rsa
+##### SSH
+#ADD ./ssh ./ssh
+#RUN cp -r ./ssh /root/.ssh
+#
+#RUN chmod 400 ~/.ssh/id_rsa
 
 WORKDIR /app

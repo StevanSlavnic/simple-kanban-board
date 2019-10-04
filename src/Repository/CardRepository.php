@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Card;
+use App\Entity\Card\Card;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
