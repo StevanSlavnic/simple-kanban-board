@@ -1,0 +1,5 @@
+App\Entity\Card\Card:
+    exclusion_policy: ALL
+    properties:
+        enabled:
+            expose: true

@@ -46,15 +46,29 @@ class CardRestController extends AbstractController
      *  )
      * @param Request $request
      *
-     * @return JsonResponse
+     * @return View
      */
-    public function getCards(Request $request): JsonResponse
+    public function getCards(Request $request): View
     {
         $repository = $this->getDoctrine()->getRepository(Card::class);
 
         $cards = $repository->findAll();
 
-        return new JsonResponse(json_encode($cards));
+//        $statusRequestedCards = $repository->findByStatus(Card::STATUS_REQUESTED);
+//
+//        $statusInProgressCards = $repository->findByStatus(Card::STATUS_IN_PROGRESS);
+//
+//        $statusDoneCards = $repository->findByStatus(Card::STATUS_DONE);
+
+//        var_dump();
+
+        return new View($cards
+//        array(
+//            'statusRequested' => $statusRequestedCards,
+//            'statusInProgress' => $statusInProgressCards,
+//            'statusDone' => $statusDoneCards
+//        )
+        );
     }
 
     /**
@@ -80,9 +94,9 @@ class CardRestController extends AbstractController
      *  )
      * @param Request $request
      *
-     * @return JsonResponse
+     * @return View|JsonResponse
      */
-    public function createCard(Request $request): JsonResponse
+    public function createCard(Request $request)
     {
 
         $data = json_decode(
@@ -109,7 +123,7 @@ class CardRestController extends AbstractController
         $this->entityManager->persist($card);
         $this->entityManager->flush();
 
-        return new JsonResponse($data);
+        return new View($data);
 
     }
 
@@ -140,15 +154,15 @@ class CardRestController extends AbstractController
      * @param $id
      * @param Request $request
      *
-     * @return JsonResponse
+     * @return View
      */
-    public function editCard(Request $request, $id): JsonResponse
+    public function editCard(Request $request, $id): View
     {
 
         $card = $this->getDoctrine()->getRepository(Card::class)->find($id);
 
         if(!$card) {
-            return new JsonResponse(
+            return new View(
                 [
                     'status' => 'error',
                 ]
@@ -165,7 +179,7 @@ class CardRestController extends AbstractController
         $form->submit($data);
 
         if (false === $form->isValid()) {
-            return new JsonResponse(
+            return new View(
                 [
                     'status' => 'error',
                 ]
@@ -175,7 +189,7 @@ class CardRestController extends AbstractController
         $this->entityManager->persist($card);
         $this->entityManager->flush();
 
-        return new JsonResponse($data);
+        return new View($data);
 
     }
 
@@ -197,21 +211,43 @@ class CardRestController extends AbstractController
      * @param $id
      * @param Request $request
      *
-     * @return JsonResponse
+     * @return View|JsonResponse
      */
-    public function updateCardStatus(Request $request, string $id): JsonResponse
+    public function updateCardStatus(Request $request, string $id)
     {
         $card = $this->getDoctrine()->getRepository(Card::class)->find($id);
-        $form = $this->createForm(CardType::class, $card);
-        $form->submit($card->setStatus(Card::STATUS_IN_PROGRESS), false);
 
-//        if (false === $form->isValid()) {
+        $statusRequested = $request->request->get('status');
+
+        var_dump($card);
+        $form = $this->createForm(CardType::class, $card);
+
+        //        if (false === $form->isValid()) {
 //            return JsonResponse::create('No card', 400);
 //        }
+
+//        var_dump();
+
+
+        if($statusRequested === '0') {
+            $form->submit($card->setStatus(Card::STATUS_REQUESTED));
+        }
+
+        if ($statusRequested === '1') {
+            $form->submit($card->setStatus(Card::STATUS_IN_PROGRESS));
+        }
+
+        if ($statusRequested === '2') {
+            $form->submit($card->setStatus(Card::STATUS_DONE));
+        }
+
+
+
+
         $this->entityManager->persist($card);
         $this->entityManager->flush();
 
-        return new JsonResponse($card);
+        return new View($card);
     }
 
     /**
@@ -232,16 +268,16 @@ class CardRestController extends AbstractController
      *  )
      * @param $id
      *
-     * @return JsonResponse
+     * @return View
      */
-    public function deleteCard($id): JsonResponse
+    public function deleteCard($id): View
     {
         $card = $this->getDoctrine()->getRepository(Card::class)->find($id);
 
         $this->entityManager->remove($card);
         $this->entityManager->flush();
 
-        return new JsonResponse('', http_response_code(200));
+        return new View('Card deleted', http_response_code(200));
 
     }
 }

@@ -1,0 +1,88 @@
+// apply border-box to all elements
+html {
+    box-sizing: border-box;
+}
+
+* {
+    &,
+    &:before,
+    &:after {
+        box-sizing: inherit;
+    }
+  }
+
+
+// remove all margins and paddings
+body,
+h1, h2, h3, h4, h5, h6,
+p, blockquote, pre,
+dl, dd, ol, ul,
+form, fieldset, legend,
+figure,
+table, th, td, caption,
+hr {
+    margin: 0;
+    padding: 0;
+}
+
+// default link style override
+* {
+    &::selection {
+        background-color: $color-main;
+        color: #fff;
+    }
+
+    &:focus {
+        outline: 0;
+    }
+}
+
+a {
+    @include link-hover($color-blue);
+}
+
+// default spacing between elements
+h1, h2, h3, h4, h5, h6,
+ul, ol, dl, img,
+blockquote, p, address,
+hr,
+table,
+fieldset, figure,
+pre {
+    margin-bottom: $spacing-unit;
+}
+
+ul, ol,
+dd {
+    margin-left: $spacing-unit;
+}
+
+
+// global override header styles
+h1 {
+  font-weight: $weight-bold;
+  font-size: $font-size-huge;
+  letter-spacing: -0.75px;
+}
+h2 {
+    font-weight: $weight-bold;
+    font-size: $font-size-big;
+    letter-spacing: -0.5px;
+  }
+
+h3 {
+  font-weight: $weight-bold;
+  font-size: $font-size-big;
+  color: $color-blue;
+  letter-spacing: -0.5px;
+}
+
+h4 {
+  font-weight: $weight-normal;
+  font-size: $font-size-big;
+  letter-spacing: -0.5px
+}
+
+strong {
+    font-weight: $weight-bold;
+}

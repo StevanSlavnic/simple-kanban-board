@@ -1,0 +1,108 @@
+@import "../../../sass/variables";
+@import "../../../sass/tools/tools.mixins";
+
+.ButtonBase {
+	font-size: 13px !important;
+	border-radius: 7px !important;
+	padding: 5px 20px !important;
+	text-transform: none !important;
+	font-weight: $weight-bold !important;
+	box-shadow: none !important;
+	min-height: 32px !important;
+	min-width: 80px !important;
+}
+
+.FontLarge {
+	font-size: 15px !important;
+}
+
+.ButtonNormal {
+	color: $color-white !important;
+}
+
+.ButtonInput {
+	color: $color-text-main !important;
+	border-color: $color-border !important;
+	border-width: 1px !important;
+	border-radius: 0px !important;
+	min-width: 55px !important;
+	padding: 10px 15px !important;
+
+	@include background-hover(transparent, $color-main-light, true) {
+		color: darken($color-white, 1%) !important;
+		border-color: $color-main-dark !important;
+		border-width: 1px !important;
+	}
+
+	&--icon_hover{
+		@include background-hover(transparent, $color-main-light, true) {
+			color: darken($color-white, 1%) !important;
+			border-color: $color-main-dark !important;
+			border-width: 1px !important;
+			svg {
+				path {
+					fill: $color-white;
+				}
+			}
+		}
+	}
+}
+
+.ButtonTransparent {
+	color: $color-black !important;
+	border-color: $color-black !important;
+	border-width: 1px !important;
+	border-radius: 0px !important;
+	min-width: 55px !important;
+	padding: 10px 15px !important;
+
+	@include background-hover(transparent, $color-black, true) {
+		//color: $color-white !important;
+		color: darken($color-white, 1%) !important;
+		border-color: $color-main-dark !important;
+		border-width: 1px !important;
+	}
+}
+
+.ButtonInputActive {
+	&,
+	&:focus {
+		color: $color-white !important;
+		border-color: $color-main-dark !important;
+		border-width: 1px !important;
+		background-color: $color-main !important;
+	}
+}
+
+.ButtonLink {
+	border: none !important;
+	background: none !important;
+	padding: 0 !important;
+	min-width: 0 !important;
+	min-height: 0 !important;
+
+	span {
+		transition: color $timing-default;
+		color: $color-blue !important;
+	}
+
+	&:hover {
+		span {
+			color: $color-black !important;
+		}
+	}
+}
+
+.NoRadius {
+	border-radius: 0px !important;
+}
+
+.LoaderWrap {
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
+	justify-content: center !important;
+	min-width: 0 !important;
+	min-height: 0 !important;
+	color: inherit !important;
+}

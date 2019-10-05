@@ -1,0 +1,35 @@
+@import "./../../../sass/variables";
+@import "./../../../sass/tools/tools.mixins";
+
+.Modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 18000!important;
+}
+
+.Card {
+  width: 601px;
+  position: relative;
+  padding: 40px;
+  text-align: center;
+  @include mq('to', 601, '') {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    &::after {
+      height: 0;
+    }
+  }
+}
+
+.CloseButton {
+  position: absolute !important;
+  top: 0;
+  right: 0;
+  z-index: 9999;
+
+  img{
+    margin: 0;
+  }
+}

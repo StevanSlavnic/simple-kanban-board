@@ -1,0 +1,23 @@
+.Form {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.NativeSelect {
+	position: relative;
+	.RenderedInput {
+		width: 100% !important;
+	}
+	.HiddenInput {
+		width: 100% !important;
+		position: absolute;
+		top: 0;
+		left: 0;
+		opacity: 0;
+
+		p {
+			display: none;
+		}
+	}
+}

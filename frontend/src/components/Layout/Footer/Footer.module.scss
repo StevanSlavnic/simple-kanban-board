@@ -1,0 +1,63 @@
+@import "../../../sass/variables";
+@import "../../../sass/tools/_tools.mixins.scss";
+
+footer {
+  display: flex;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: space-between;
+  height: 70px;
+    @include mq('to', 601, '') {
+      height: auto;
+      flex-direction: column;
+    }
+	padding: 0 24px;
+	border-top: 1px solid $color-border;
+  background-color: $color-white;
+  padding: 25px 30px;
+  position: relative;
+  // z-index: 11000;
+  .Logo {
+    img {
+      width: 80px;
+      margin-bottom: 0;
+      @include mq('to', 601, '') {
+        margin-bottom: 20px;
+      }
+    }
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    @include mq('to', 601, '') {
+      flex-direction: column;
+    }
+    a {
+      @include nav-link($color-blue, $color-black, $active: false);
+      margin-right: 20px;
+      padding-bottom: 2px;
+      font-size: $font-size-small;
+
+      &.activeLink{
+        @include nav-link($color-blue, $color-black, $active: true);
+        color: $color-black;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+        @include mq('to', 601, '') {
+          margin-bottom: 10px;
+          margin-right: 0;
+        }
+    }
+    .Copyright {
+      font-size: $font-size-small;
+      @include link-hover($color-grey, $color-grey);
+    }
+  }
+}
+
+
+

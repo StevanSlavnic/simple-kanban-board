@@ -1,0 +1,63 @@
+// colors
+$color-main: #75c89f;
+$color-main-light: #99debc;
+$color-main-dark: #75c89f;
+
+$color-blue: #83a8d4;
+$color-blue-baby: #e2ecf9;
+$color-blue-light: #d1dff0;
+$color-blue-more-light: #f0f4f7;
+$color-red: #ef5959;
+$color-orange: #eb9e79;
+$color-yellow: rgb(236, 184, 76);
+$color-white: #ffffff;
+
+$color-black: #272727;
+$color-grey: #a5a5a5;
+$color-grey-light: #c9c9c9;
+$color-grey-white: #f1f1f1;
+$color-grey-blue: #b6c1cb;
+$color-grey-blue-light: #f7f7f7;
+
+$color-transparent: transparent;
+
+// export will expose variables to be used with the JS. Mostly for overriding the Material-UI library
+:export {
+	main: $color-main;
+	main-light: $color-main-light;
+	main-dark: $color-main-dark;
+	blue: $color-blue;
+	blue-baby: $color-blue-baby;
+	blue-light: $color-blue-light;
+	blue-more-light: $color-blue-more-light;
+	red: $color-red;
+	orange: $color-orange;
+	yellow: $color-yellow;
+	white: $color-white;
+	black: $color-black;
+	grey: $color-grey;
+	grey-light: $color-grey-light;
+	grey-white: $color-grey-white;
+	grey-blue: $color-grey-blue;
+	grey-blue-light: $color-grey-blue-light;
+}
+
+// Colors with opacity
+$color-white-08: rgba(255, 255, 255, 0.8);
+$color-black-05: rgba(0, 0, 0, 0.5);
+
+// sets
+$color-text-main: $color-black;
+$color-text-light: $color-grey;
+
+$color-border: $color-grey-light;
+
+$color-background: #f1f4f7;
+$color-video-background: $color-black;
+
+$color-link: $color-text-main;
+$color-link-hover: $color-main;
+
+// list (for itterating through a loop, for example Card.module.scss component
+$colors: "red" $color-red, "blue" $color-blue, "green" $color-main, "orange" $color-orange,
+	"yellow" $color-yellow;
