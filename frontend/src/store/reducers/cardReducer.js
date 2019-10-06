@@ -1,19 +1,22 @@
 import * as _ from "lodash";
 
-// const createLocation = (state, payload) => {
-// console.log(state);
+const createCard = (state, payload) => {
+    console.log(state);
 
-// const newLocation = payload.location;
+    const newCard = payload.card;
 
-// console.log(newLocation);
+    console.log(newCard);
 
-// // make a copy
-// const newLocations = state.locations.slice();
+    // make a copy
+    const newCards = state.cards.slice();
 
-// newLocations.splice(0, 0, newLocation);
+    newCards.splice(0, 0, newCard);
 
-// return { ...state, locations: newLocations };
-// };
+    return {
+        ...state,
+        cards: newCards
+    };
+};
 
 
 const editCard = (state, payload) => {
@@ -42,9 +45,36 @@ const editCard = (state, payload) => {
     console.log(newCards);
     return {
         ...state,
-        cardss: newCards
+        cards: newCards
     };
 };
+
+
+const updateStatusCard = (state, payload) => {
+    console.log(payload)
+
+    const newCards = state.cards.map((card, index) => {
+        if (card.id === payload.id) {
+            const payloadCopy = _.cloneDeep(payload);
+            console.log(payloadCopy);
+
+            return {
+                ...card, // copy the existing card
+                status: `${
+                    payloadCopy.status
+                }`
+            };
+        }
+        return card;
+    });
+    // Returns new state
+    console.log(newCards);
+    return {
+        ...state,
+        cards: newCards
+    };
+}
+
 
 const removeCard = (state, payload) => {
     console.log();
@@ -77,8 +107,10 @@ const reducer = (state = {}, action) => {
             return removeCard(state, action);
             // case "CARDS_EDITING":
             // return editLocation(state, action);
-            // case "CARDS_CREATE":
-            // return createLocation(state, action);
+        case "CARD_STATUS_UPDATE":
+            return updateStatusCard(state, action)
+        case "CARD_CREATE":
+            return createCard(state, action);
         default:
             return state;
     }

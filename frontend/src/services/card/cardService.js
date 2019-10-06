@@ -1,7 +1,7 @@
 import axiosInstance from "../axiosDefaultInstance";
 
 export const createCard = cardData => {
-    const url = "/cards/create";
+    const url = "/cards";
 
     return axiosInstance.post(url, cardData);
 };
@@ -15,12 +15,11 @@ export const editCard = (cardId, cardData) => {
 };
 
 export const updateStatusCard = (cardId, cardData) => {
+
     const url = `/cards/${cardId}`;
 
-    console.log(cardData);
-
     const payload = {
-        'status': `${cardData}`
+        status: `${cardData}`
     }
 
     return axiosInstance.patch(url, payload);

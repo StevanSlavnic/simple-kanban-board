@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {cardsFetchData, cardsFetchDataFiltered, cardRemove} from "../../store/actions/cardActions";
+import {cardsFetchData, cardUpdate, cardsFetchDataFiltered, cardRemove} from "../../store/actions/cardActions";
 import * as cardService from "../../services/card/cardService";
 import * as ReactDOM from 'react-dom';
 import * as _ from "lodash";
@@ -9,7 +9,8 @@ import * as _ from "lodash";
 
 import KanbanCard from "../../components/KanbanCard/KanbanCard";
 import Button from "../../components/UI/Button/Button";
-import Modal from "../../components/UI/Modal/Modal"
+import Modal from "../../components/UI/Modal/Modal";
+import FormConfig from './FormConfig/FromConfig';
 import IconButton from "@material-ui/core/IconButton";
 import Reset from "../../assets/images/icons/close_icon.svg";
 import classes from "./HomePage.module.scss";
@@ -28,7 +29,6 @@ class HomePage extends Component {
             realm: ''
         };
         this.cardMoveId = this.cardMoveId.bind(this);
-        console.log(props);
     }
 
     componentDidMount() {
@@ -100,9 +100,14 @@ class HomePage extends Component {
         this.setState({realm: realm})
 
         setTimeout(() => {
-            console.log(this.state.cardMoveId, this.state.realm)
 
-            cardService.updateStatusCard(this.state.cardMoveId, this.state.realm)
+            cardService.updateStatusCard(this.state.cardMoveId, this.state.realm).then(response => {
+                console.log(response)
+            }).catch(error => {
+                console.log(error.response)
+            });
+
+            this.props.updateStatus(this.state.cardMoveId, this.state.realm)
         }, 400)
     }
 
@@ -119,9 +124,6 @@ class HomePage extends Component {
 
             console.log(this.props.cards.cards)
 
-            console.log(this.state.cardMoveId, this.state.realm)
-
-
             const cardsRequest = _.filter(this.props.cards.cards, {"status": "0"});
             const cardsRequestRender = cardsRequest && cardsRequest.map(card => {
                     return(< div className = {
@@ -130,7 +132,7 @@ class HomePage extends Component {
                     key = {
                         card.id
                     } > <KanbanCard className={
-                            classes.LocationKanbanCard
+                            classes.SingleKanbanCard
                         }
                         id={
                             card.id
@@ -168,7 +170,7 @@ class HomePage extends Component {
                         card.id
                 }>
                     <KanbanCard className={
-                            classes.LocationKanbanCard
+                            classes.SingleKanbanCard
                         }
                         id={
                             card.id
@@ -209,7 +211,7 @@ class HomePage extends Component {
                         card.id
                 }>
                     <KanbanCard className={
-                            classes.LocationKanbanCard
+                            classes.SingleKanbanCard
                         }
                         id={
                             card.id
@@ -241,10 +243,17 @@ class HomePage extends Component {
             <div className={
                 classes.KanbanPageWrap
             }>
-                <div className={
-                    classes.KanbanHeader
-                }>
-                    <h1>Kanban board</h1>
+                <div>
+                    <div className={
+                        classes.KanbanHeader
+                    }>
+                        <h1>Kanban board</h1>
+                    </div>
+                    <div>
+                        <Button onClick={
+                            this.openModal
+                        }>Create new task</Button>
+                    </div>
                 </div>
                 <div className={
                     classes.KanbanCardsWrap
@@ -296,6 +305,23 @@ class HomePage extends Component {
                         </div>
                     </div>
                 </div>
+
+                <Modal open={
+                        this.state.modalOpened
+                    }
+                    onClose={
+                        this.closeModal
+                    }
+                    className={
+                        classes.AdminPanelModalWide
+                }>
+                    <FormConfig cards={
+                            this.state.cards
+                        }
+                        onClose={
+                            this.closeModal
+                        }/>
+                </Modal>
 
                 <Modal open={
                         this.state.modalEditOpened
@@ -353,13 +379,14 @@ class HomePage extends Component {
 }
 
 const mapStateToProps = state => {
-    return {cards: state.cards};
+    return {cards: state.cards, isLoading: state.cardsAreLoading};
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         fetchData: url => dispatch(cardsFetchData(url)),
-        removeCard: id => dispatch(cardRemove(id))
+        removeCard: id => dispatch(cardRemove(id)),
+        updateStatus: (id, status) => dispatch(cardUpdate(id, status))
     };
 };
 

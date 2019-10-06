@@ -120,6 +120,8 @@ class CardRestController extends AbstractController
 
         $card->setStatus(Card::STATUS_REQUESTED);
 
+
+
         $this->entityManager->persist($card);
         $this->entityManager->flush();
 
@@ -219,15 +221,8 @@ class CardRestController extends AbstractController
 
         $statusRequested = $request->request->get('status');
 
-        var_dump($card);
+
         $form = $this->createForm(CardType::class, $card);
-
-        //        if (false === $form->isValid()) {
-//            return JsonResponse::create('No card', 400);
-//        }
-
-//        var_dump();
-
 
         if($statusRequested === '0') {
             $form->submit($card->setStatus(Card::STATUS_REQUESTED));
@@ -240,9 +235,6 @@ class CardRestController extends AbstractController
         if ($statusRequested === '2') {
             $form->submit($card->setStatus(Card::STATUS_DONE));
         }
-
-
-
 
         $this->entityManager->persist($card);
         $this->entityManager->flush();

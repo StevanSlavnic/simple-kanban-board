@@ -2,55 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f388231e-0b2c-4738-8250-2a39cabd8126" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/.env.dist" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Layout/Footer/Footer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Layout/Footer/Footer.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Layout/Header/Header.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Layout/Header/Header.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Layout/Layout.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Layout/Layout.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/UI/Button/Button.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/UI/Button/Button.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/UI/Card/Card.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/UI/Card/Card.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/UI/Form/Form.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/UI/Form/Form.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/UI/Input/Input.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/UI/Modal/Modal.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/UI/Modal/Modal.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/UI/Pagination/Pagination.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/UI/Pagination/Pagination.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/containers/indexContainers.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/sass/_variables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/sass/generic/_generic.fonts.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/sass/generic/_generic.reset.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/sass/settings/_settings.colors.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/sass/settings/_settings.font.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/sass/settings/_settings.global.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/sass/settings/_settings.responsive.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/sass/tools/_tools.mixins.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/services/axiosDefaultInstance.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/store/actions/actionTypes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/store/actions/indexActions.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/utils/apiConfig.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/utils/redirectTo.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Resources/config/serializer/Model.Card.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cf1c6e76-287e-4f7d-a047-99c002893ff8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cf1c6e76-287e-4f7d-a047-99c002893ff8.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/containers/HomePage/FormConfig/FormConfig.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/containers/HomePage/FormConfig/FromConfig.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/jms_serializer.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/jms_serializer.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/sensio_framework_extra.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/sensio_framework_extra.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes/annotations.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes/annotations.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/nelmio_cors.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/nelmio_cors.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Layout/Header/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Layout/Header/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/containers/HomePage/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/containers/HomePage/HomePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/containers/HomePage/HomePage.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/containers/HomePage/HomePage.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/services/card/cardService.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/services/card/cardService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/store/actions/cardActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/actions/cardActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/store/reducers/cardReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/reducers/cardReducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/Card/CardRestController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Card/CardRestController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Card/Card.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Card/Card.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20191004104923.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Migrations/Version20191005073628.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/CardRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/CardRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resources/config/serializer/Model.Card.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/config/serializer/CARDS/Model.Card.yml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -97,6 +60,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
       <path value="$PROJECT_DIR$/api/vendor/composer" />
@@ -320,7 +284,7 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Resources/config/serializer" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/infodepot-develop" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -330,18 +294,19 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Resources/config/serializer/CARDS" />
+      <recent name="$PROJECT_DIR$/src/Controller/Card" />
+      <recent name="$PROJECT_DIR$/config/routes/dev" />
+      <recent name="$PROJECT_DIR$/src/Entity/Card" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/Resources/config/serializer" />
       <recent name="$PROJECT_DIR$/frontend/src" />
       <recent name="$PROJECT_DIR$/frontend" />
       <recent name="$PROJECT_DIR$/config/packages/dev" />
       <recent name="$PROJECT_DIR$/config/packages" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/Controller/Card" />
-      <recent name="$PROJECT_DIR$/config/routes/dev" />
-      <recent name="$PROJECT_DIR$/src/Entity/Card" />
-      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -378,17 +343,12 @@
           <expand>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@e9e2cbfd" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@c25b4423" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@e9e2cbfd" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@232ecd9e" type="9fbbdea:ServiceModel$ServiceNode" />
-            </path>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@e9e2cbfd" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@23b05b65" type="9fbbdea:ServiceModel$ServiceNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@c25b4423" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@4bd21111" type="9fbbdea:ServiceModel$ServiceNode" />
             </path>
           </expand>
           <select />
@@ -409,7 +369,7 @@
       <workItem from="1570126496512" duration="15134000" />
       <workItem from="1570199193582" duration="3542000" />
       <workItem from="1570269897775" duration="7391000" />
-      <workItem from="1570304997267" duration="5987000" />
+      <workItem from="1570304997267" duration="11281000" />
     </task>
     <servers />
   </component>
