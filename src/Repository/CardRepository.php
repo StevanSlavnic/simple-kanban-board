@@ -22,12 +22,21 @@ class CardRepository extends ServiceEntityRepository
     // /**
     //  * @return Card[] Returns an array of Card objects
     //  */
-    public function findByStatus($value)
+//    public function findByStatus($value)
+//    {
+//        return $this->createQueryBuilder('c')
+//            ->andWhere('c.status = :val')
+//            ->setParameter('val', $value)
+//            ->orderBy('c.updatedAt', 'DESC')
+//            ->getQuery()
+//            ->getResult()
+//            ;
+//    }
+
+    public function findAllById()
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.status = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
+            ->orderBy('c.id', 'DESC')
             ->getQuery()
             ->getResult()
             ;

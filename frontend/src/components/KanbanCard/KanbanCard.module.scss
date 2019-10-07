@@ -2,22 +2,13 @@
 @import "../../sass/tools/tools.mixins";
 @import "../../sass/settings/settings.colors";
 
-.LocationGeneral {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+.CardGeneral {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-.LocationLabel {
-    font-weight: 400;
-}
-
-// list is declared in _settings.colors.scss
-// "red" "blue" "green" "orange" "yellow" ...
-// if we pass prop color with one name included in the list that color will be applied
-@each $color in $colors {
-    &--#{nth($color, 1)} {
-        @include addRibbon(#{nth($color, 2)});
-    }
+.CardLabel {
+  font-weight: 400;
 }

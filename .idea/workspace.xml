@@ -2,18 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f388231e-0b2c-4738-8250-2a39cabd8126" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/containers/HomePage/FormConfig/FormConfig.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/containers/HomePage/FormConfig/FromConfig.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cf1c6e76-287e-4f7d-a047-99c002893ff8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cf1c6e76-287e-4f7d-a047-99c002893ff8.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/packages/nelmio_cors.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/nelmio_cors.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Layout/Header/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Layout/Header/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/KanbanCard/KanbanCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/KanbanCard/KanbanCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/KanbanCard/KanbanCard.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/KanbanCard/KanbanCard.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Layout/Header/Header.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Layout/Header/Header.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/UI/Card/Card.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UI/Card/Card.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/UI/Card/Card.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UI/Card/Card.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/containers/HomePage/FormConfig/FromConfig.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/containers/HomePage/FormConfig/FromConfig.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/containers/HomePage/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/containers/HomePage/HomePage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/containers/HomePage/HomePage.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/containers/HomePage/HomePage.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/services/card/cardService.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/services/card/cardService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/store/actions/cardActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/actions/cardActions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/store/reducers/cardReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/reducers/cardReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/nginx/a51-kanban.dev_access.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/nginx/a51-kanban.dev_access.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/nginx/a51-kanban.dev_error.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/nginx/a51-kanban.dev_error.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/Card/CardRestController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Card/CardRestController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resources/config/serializer/Model.Card.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/config/serializer/CARDS/Model.Card.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Card/Card.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Card/Card.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Traits/TimestampableEntity.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Traits/TimestampableEntity.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/CardRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/CardRepository.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,6 +63,13 @@
         <item name="MySQL - a51-kanban@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="a51-kanban: schema" type="76f4a085:MysqlImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="MySQL - a51-kanban@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="a51-kanban: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="card: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
     </expand>
     <select />
@@ -343,12 +360,12 @@
           <expand>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@c25b4423" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@84a5959c" type="7427dc5b:ServiceModel$ServiceGroupNode" />
             </path>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@c25b4423" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@4bd21111" type="9fbbdea:ServiceModel$ServiceNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@84a5959c" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@7263fae2" type="9fbbdea:ServiceModel$ServiceNode" />
             </path>
           </expand>
           <select />

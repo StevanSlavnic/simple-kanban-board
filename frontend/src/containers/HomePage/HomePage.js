@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {cardsFetchData, cardUpdate, cardsFetchDataFiltered, cardRemove} from "../../store/actions/cardActions";
+import {cardsFetchData, cardUpdate, cardEditing, cardsFetchDataFiltered, cardRemove} from "../../store/actions/cardActions";
 import * as cardService from "../../services/card/cardService";
-import * as ReactDOM from 'react-dom';
+import FromConfig from "./FormConfig/FromConfig";
 import * as _ from "lodash";
 // import { Formik } from "formik";
 // import { FormikTextField } from "formik-material-fields";
@@ -19,6 +19,7 @@ class HomePage extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            card: "",
             cards: "",
             modalOpened: false,
             modalDeleteOpened: false,
@@ -26,7 +27,8 @@ class HomePage extends Component {
             cardId: "",
             cardEditId: "",
             cardMoveId: "",
-            realm: ''
+            realm: '',
+            results: ''
         };
         this.cardMoveId = this.cardMoveId.bind(this);
     }
@@ -53,14 +55,14 @@ class HomePage extends Component {
         this.getCardEditId(id);
 
         this.setState({cardEditId: id});
-
         setTimeout(() => {
-            cardService.editCard(this.state.cardEditId).then(response => {
+            cardService.getCard(this.state.cardEditId).then(response => {
+                console.log(response.data)
                 this.setState({card: response.data});
             }).catch(error => {
                 console.log(error.data);
             });
-        }, 400);
+        }, 50)
     };
 
     closeDeleteModal = () => {
@@ -122,12 +124,14 @@ class HomePage extends Component {
                     cards
                 }} = this.props;
 
-            console.log(this.props.cards.cards)
+            const card = this.state.card;
+
+            console.log(this.props.cards)
 
             const cardsRequest = _.filter(this.props.cards.cards, {"status": "0"});
             const cardsRequestRender = cardsRequest && cardsRequest.map(card => {
                     return(< div className = {
-                        classes.LocationHomeColumn
+                        classes.CardHomeColumn
                     }
                     key = {
                         card.id
@@ -154,7 +158,7 @@ class HomePage extends Component {
                             this.cardMoveId
                         }
 
-                        color='gray'></KanbanCard>
+                        color='red'></KanbanCard>
                 </div>
                 );
             }
@@ -164,7 +168,7 @@ class HomePage extends Component {
         const cardsInProgressRender = cardsInProgress && cardsInProgress.map(card => {
             return (
                 <div className={
-                        classes.LocationHomeColumn
+                        classes.CardHomeColumn
                     }
                     key={
                         card.id
@@ -205,7 +209,7 @@ class HomePage extends Component {
             return (
                 <div draggable='true'
                     className={
-                        classes.LocationHomeColumn
+                        classes.CardHomeColumn
                     }
                     key={
                         card.id
@@ -232,6 +236,7 @@ class HomePage extends Component {
                         cardMoveId={
                             this.cardMoveId
                         }
+                        done={'done'}
                         color='green'></KanbanCard>
                 </div>
             );
@@ -248,11 +253,12 @@ class HomePage extends Component {
                         classes.KanbanHeader
                     }>
                         <h1>Kanban board</h1>
-                    </div>
-                    <div>
                         <Button onClick={
                             this.openModal
                         }>Create new task</Button>
+                    </div>
+                    <div>
+                        
                     </div>
                 </div>
                 <div className={
@@ -332,13 +338,13 @@ class HomePage extends Component {
                     className={
                         classes.KanbanModalWide
                 }>
-                    edit {/* <FormConfig
-            results={this.state.results}
-            locationEditId={this.state.locationEditId}
-            location={location}
-            type="edit"
-            onCloseEdit={this.closeEditModal}
-          /> */} </Modal>
+                     <FormConfig
+                        cardEditId={this.state.cardEditId}
+                        card={card}
+                        type="edit"
+                        onCloseEdit={this.closeEditModal}
+                    />
+                </Modal>
 
                 <Modal open={
                         this.state.modalDeleteOpened
@@ -385,6 +391,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         fetchData: url => dispatch(cardsFetchData(url)),
+        editCard: (id, cardData) => dispatch(cardEditing(id, cardData)),
         removeCard: id => dispatch(cardRemove(id)),
         updateStatus: (id, status) => dispatch(cardUpdate(id, status))
     };

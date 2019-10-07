@@ -11,7 +11,6 @@ use JMS\Serializer\Annotation as JMS;
  * @JMS\ExclusionPolicy("all")
  * @ORM\Table(name="card")
  * @ORM\Entity(repositoryClass="App\Repository\CardRepository")
- * @JMS\ExclusionPolicy("all")
  * @ORM\HasLifecycleCallbacks()
  */
 class Card
@@ -111,6 +110,25 @@ class Card
         return $this;
     }
 
+    /**
+     * @JMS\VirtualProperty()
+     *
+     * @JMS\Expose()
+     *
+     */
+    public function getProjectName(): ?string
+    {
+        $json = file_get_contents('../frontend/src/shared/json/projects.json');
+        $projects = json_decode($json);
+        foreach ($projects as $project) {
+            if ($project->value == $this->getProject()) {
+                return $project->label;
+            }
+        }
+
+        return null;
+    }
+
     public function getPriority(): ?string
     {
         return $this->priority;
@@ -123,6 +141,26 @@ class Card
         return $this;
     }
 
+    /**
+     * @JMS\VirtualProperty()
+     * @JMS\Expose()
+     *
+     */
+    public function getPriorityName(): ?string
+    {
+
+
+        if($this->getPriority() == 'high') {
+            return 'High';
+        } elseif ($this->getPriority() == 'medium') {
+            return 'Medium';
+        } else {
+            return 'Low';
+        }
+
+
+    }
+
     public function getAssignee(): ?string
     {
         return $this->assignee;
@@ -133,6 +171,24 @@ class Card
         $this->assignee = $assignee;
 
         return $this;
+    }
+
+    /**
+     * @JMS\VirtualProperty()
+     * @JMS\Expose()
+     *
+     */
+    public function getAssigneeName(): ?string
+    {
+        $json = file_get_contents('../frontend/src/shared/json/assignee.json');
+        $assignees = json_decode($json);
+        foreach ($assignees as $assignee) {
+            if ($assignee->value == $this->getAssignee()) {
+                return $assignee->label;
+            }
+        }
+
+        return null;
     }
 
     public function getDueDate(): ?string
@@ -157,6 +213,25 @@ class Card
         $this->category = $category;
 
         return $this;
+    }
+
+    /**
+     * @JMS\VirtualProperty()
+     *
+     * @JMS\Expose()
+     *
+     */
+    public function getCategoryName(): ?string
+    {
+        $json = file_get_contents('../frontend/src/shared/json/category.json');
+        $categories = json_decode($json);
+        foreach ($categories as $category) {
+            if ($category->value == $this->getCategory()) {
+                return $category->label;
+            }
+        }
+
+        return null;
     }
 
     public function getDescription(): ?string

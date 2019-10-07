@@ -1,0 +1,5 @@
+[
+  { "label": "Design", "value": "design" },
+  { "label": "Development", "value": "development" },
+  { "label": "Testing", "value": "testing" }
+]

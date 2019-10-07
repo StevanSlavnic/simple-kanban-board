@@ -9,6 +9,7 @@
     "formik": "^1.5.8",
     "formik-material-fields": "^0.0.6",
     "lodash": "^4.17.15",
+    "moment": "^2.24.0",
     "node-sass": "^4.12.0",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",

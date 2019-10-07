@@ -3,11 +3,15 @@ import {connect} from "react-redux";
 import {cardsFetchData, cardCreate, cardEdit} from "../../../store/actions/cardActions";
 import _ from "lodash";
 import * as cardService from "../../../services/card/cardService";
-import {Formik, Form} from "formik";
-import {FormikTextField} from "formik-material-fields";
+import {Formik, Field,  Form} from "formik";
+import projectJSON from "../../../shared/json/projects.json";
+import priorityJSON from "../../../shared/json/priority.json";
+import categoryJSON from "../../../shared/json/category.json";
+import assigneeJSON from "../../../shared/json/assignee.json";
 
 import Button from "../../../components/UI/Button/Button";
 import classes from "./FormConfig.module.scss";
+import moment from 'moment';
 
 
 class FormConfig extends Component {
@@ -30,36 +34,34 @@ class FormConfig extends Component {
         const nextPropsCopy = nextProps;
 
         this.setState({
-            title: _.has(nextPropsCopy.results, "title") ? nextPropsCopy.results.title : "",
-            project: _.has(nextPropsCopy.results, "project") ? nextPropsCopy.results.project : "",
-            priority: _.has(nextPropsCopy.results, "priority") ? nextPropsCopy.results.priority : "",
-            assignee: _.has(nextPropsCopy.results, "assignee") ? nextPropsCopy.results.assignee : "",
-            dueDate: _.has(nextPropsCopy.results, "dueDate") ? nextPropsCopy.results.dueDate : "",
-            category: _.has(nextPropsCopy.results, "category") ? nextPropsCopy.results.category : "",
-            description: _.has(nextPropsCopy.results, "description") ? nextPropsCopy.results.description : ""
+            title: _.has(nextPropsCopy.card, "title") ? nextPropsCopy.card.title : "",
+            project: _.has(nextPropsCopy.card, "project") ? nextPropsCopy.card.project : "",
+            priority: _.has(nextPropsCopy.card, "priority") ? nextPropsCopy.card.priority : "",
+            assignee: _.has(nextPropsCopy.card, "assignee") ? nextPropsCopy.card.assignee : "",
+            dueDate: _.has(nextPropsCopy.card, "due_date") ? nextPropsCopy.card.due_date : "",
+            category: _.has(nextPropsCopy.card, "category") ? nextPropsCopy.card.category : "",
+            description: _.has(nextPropsCopy.card, "description") ? nextPropsCopy.card.description : ""
         });
     }
 
-
     componentDidMount() {
-        this.props.fetchData("http://a51-kanban-dev.com/api/v1/cards");
+        // this.props.fetchData("http://a51-kanban-dev.com/api/v1/cards");
         if (this.props.type === "edit") {
             setTimeout(() => {
                 this.setState({
-                    title: this.props.location.title,
-                    project: this.props.location.project,
-                    priority: this.props.location.priority,
-                    assignee: this.props.location.assignee,
-                    dueDate: this.props.location.dueDate,
-                    category: this.props.location.category,
-                    description: this.props.location.description
+                    title: this.props.card.title,
+                    project: this.props.card.project,
+                    priority: this.props.card.priority,
+                    assignee: this.props.card.assignee,
+                    dueDate: this.props.card.due_date,
+                    category: this.props.card.category,
+                    description: this.props.card.description
                 });
             }, 500);
         }
     }
 
     handleChange(e, field) {
-        console.log(field);
         this.setState({[field]: e.target.value});
     }
 
@@ -72,6 +74,7 @@ class FormConfig extends Component {
                     }
                     onSubmit={
                         (values, {setSubmitting}) => {
+                            console.log(values.title)
                             this.props.type === "edit" ? setTimeout(() => {
                                 cardService.editCard(this.props.cardEditId, values).then(response => {
                                     console.log(response);
@@ -92,14 +95,38 @@ class FormConfig extends Component {
                             }, 400);
                         }
                     }
+                    validate={values => {
 
+                        console.log(values.title.length)
+                        const errors = {};
+
+                        console.log(errors)
+                            if (!values.title) {
+                                errors.title = "Required";
+                            }
+                            if (values.title.length <= 3) {
+                                errors.title = "Enter title longer than 3 characters";
+                            }
+                
+                            if (values.title.length >= 150) {
+                                errors.title = "Title is limited to 150 characters";
+                            }
+                        }
+                    }
                     render={
-                        ({isSubmitting}) => this.props.type === "edit" ? (
+                        ({values,
+                            errors,
+                            status,
+                            touched,
+                            handleBlur,
+                            handleChange,
+                            handleSubmit,
+                            isSubmitting,}) => this.props.type === "edit" ? (
                             <Form>
                                 <div className={
                                     classes.FormConfigGroup
                                 }>
-                                    <FormikTextField type="text" name="title" label="Title"
+                                    <Field type="text" name="title" label="Title" placeholder="Title"
                                         value={
                                             this.state.title
                                         }
@@ -109,38 +136,50 @@ class FormConfig extends Component {
                                         className={
                                             classes.FormConfigField
                                         }/>
+                                        {errors.title && touched.title && <div>{errors.title}</div>}
 
-                                    <FormikTextField type="text" name="project" label="Project"
-                                        value={
+                                    <Field component="select" name="project" placeholder="Project" value={
                                             this.state.project
-                                        }
-                                        onChange={
+                                        } onChange={
                                             e => this.handleChange(e, "project")
-                                        }
-                                        className={
+                                        } className={
                                             classes.FormConfigField
-                                        }/>
-                                    <FormikTextField type="text" name="priority" label="Priority"
-                                        value={
+                                        }>
+                                             <option value=''>Select project</option>
+                                        {projectJSON.map(project => (
+                                            <option key={project.value} value={project.value}>{project.label}</option>
+                                        ))}
+                                    </Field>
+
+                                    <Field component="select" name="priority" placeholder="Priority" value={
                                             this.state.priority
-                                        }
-                                        onChange={
+                                        } onChange={
                                             e => this.handleChange(e, "priority")
-                                        }
-                                        className={
+                                        } className={
                                             classes.FormConfigField
-                                        }/>
-                                    <FormikTextField type="text" name="assignee" label="Assignee"
-                                        value={
+                                        }>
+                                            <option value=''>Select priority</option>
+                                        {priorityJSON.map(priority => (
+                                            <option key={priority.value} value={priority.value}>{priority.label}</option>
+                                        ))}
+                                    </Field>
+                                        
+                                    <Field component="select" name="assignee" placeholder="Assignee" value={
                                             this.state.assignee
-                                        }
-                                        onChange={
+                                        } onChange={
                                             e => this.handleChange(e, "assignee")
-                                        }
-                                        className={
+                                        } className={
                                             classes.FormConfigField
-                                        }/>
-                                    <FormikTextField type="text" name="dueDate" label="Due Date"
+                                        }>
+                                             <option value=''>Select assignee</option>
+                                        {assigneeJSON.map(assignee => (
+                                            <option key={assignee.value} value={assignee.value}>{assignee.label}</option>
+                                        ))}
+                                    </Field>
+
+                                    <Field type="date"
+                                        min={moment(new Date()).format('YYYY-MM-DD')}
+                                        name="dueDate" placeholder="Due Date"
                                         value={
                                             this.state.dueDate
                                         }
@@ -150,17 +189,21 @@ class FormConfig extends Component {
                                         className={
                                             classes.FormConfigField
                                         }/>
-                                    <FormikTextField type="text" name="category" label="Category"
-                                        value={
+
+                                    <Field component="select" name="category" placeholder="Category" value={
                                             this.state.category
-                                        }
-                                        onChange={
+                                        } onChange={
                                             e => this.handleChange(e, "category")
-                                        }
-                                        className={
+                                        } className={
                                             classes.FormConfigField
-                                        }/>
-                                    <FormikTextField type="text" name="description" label="Description"
+                                        }>
+                                            <option value=''>Select category</option>
+                                        {categoryJSON.map(category => (
+                                            <option key={category.value} value={category.value}>{category.label}</option>
+                                        ))}
+                                    </Field>
+
+                                    <Field type="text" name="description" placeholder="Description"
                                         value={
                                             this.state.description
                                         }
@@ -183,7 +226,7 @@ class FormConfig extends Component {
                                 <div className={
                                     classes.FormConfigGroup
                                 }>
-                                    <FormikTextField type="text" name="title" label="Title"
+                                    <Field type="text" name="title" placeholder="Title"
                                         onChange={
                                             e => this.handleChange(e, "title")
                                         }
@@ -191,42 +234,61 @@ class FormConfig extends Component {
                                             classes.FormConfigField
                                         }/>
 
-                                    <FormikTextField type="text" name="project" label="Project"
-                                        onChange={
+                                    <Field component="select" name="project" placeholder="Project" onChange={
                                             e => this.handleChange(e, "project")
-                                        }
-                                        className={
+                                        } className={
                                             classes.FormConfigField
-                                        }/>
-                                    <FormikTextField type="text" name="priority" label="Priority"
-                                        onChange={
+                                        }>
+                                            <option value=''>Select project</option>
+                                        {projectJSON.map(project => (
+                                            <option key={project.value} value={project.value}>{project.label}</option>
+                                        ))}
+                                    </Field>
+
+                                    <Field component="select" name="priority" placeholder="Priority" onChange={
                                             e => this.handleChange(e, "priority")
-                                        }
-                                        className={
+                                        } className={
                                             classes.FormConfigField
-                                        }/>
-                                    <FormikTextField type="text" name="assignee" label="Assignee"
-                                        onChange={
+                                        }>
+                                            <option value=''>Select priority</option>
+                                        {priorityJSON.map(priority => (
+                                            <option key={priority.value} value={priority.value}>{priority.label}</option>
+                                        ))}
+                                    </Field>
+
+                                    <Field component="select" name="assignee" placeholder="Assignee" onChange={
                                             e => this.handleChange(e, "assignee")
-                                        }
-                                        className={
+                                        } className={
                                             classes.FormConfigField
-                                        }/>
-                                    <FormikTextField type="text" name="dueDate" label="Due Date"
+                                        }>
+                                            <option value=''>Select assignee</option>
+                                        {assigneeJSON.map(assignee => (
+                                            <option key={assignee.value} value={assignee.value}>{assignee.label}</option>
+                                        ))}
+                                    </Field>
+
+                                    <Field type="date" name="dueDate" placeholder="Due Date"  
+                                        min={moment(new Date()).format('YYYY-MM-DD')}
                                         onChange={
                                             e => this.handleChange(e, "dueDate")
                                         }
                                         className={
                                             classes.FormConfigField
                                         }/>
-                                    <FormikTextField type="text" name="category" label="Category"
-                                        onChange={
+
+                                    <Field component="select" name="category" placeholder="Category" onChange={
                                             e => this.handleChange(e, "category")
-                                        }
-                                        className={
+                                        } className={
                                             classes.FormConfigField
-                                        }/>
-                                    <FormikTextField type="text" name="description" label="Description"
+                                        }>
+                                            <option value=''>Select category</option>
+                                        {categoryJSON.map(category => (
+                                            <option key={category.value} value={category.value}>{category.label}</option>
+                                        ))}
+                                    </Field>
+
+
+                                    <Field type="text" name="description" placeholder="Description"
 
                                         onChange={
                                             e => this.handleChange(e, "description")
@@ -257,7 +319,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchData: url => dispatch(cardsFetchData(url)),
+        // fetchData: url => dispatch(cardsFetchData(url)),
         createCard: card => dispatch(cardCreate(card)),
         editCard: (id, card) => dispatch(cardEdit(id, card))
     };

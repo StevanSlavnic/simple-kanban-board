@@ -52,18 +52,19 @@ class CardRestController extends AbstractController
     {
         $repository = $this->getDoctrine()->getRepository(Card::class);
 
-        $cards = $repository->findAll();
+        $cards = $repository->findAllById();
 
+        /** todo: Make response by status of cards */
 //        $statusRequestedCards = $repository->findByStatus(Card::STATUS_REQUESTED);
 //
 //        $statusInProgressCards = $repository->findByStatus(Card::STATUS_IN_PROGRESS);
 //
 //        $statusDoneCards = $repository->findByStatus(Card::STATUS_DONE);
 
-//        var_dump();
-
         return new View($cards
-//        array(
+
+        /** todo: Make response by status of cards */
+//        , array(
 //            'statusRequested' => $statusRequestedCards,
 //            'statusInProgress' => $statusInProgressCards,
 //            'statusDone' => $statusDoneCards
@@ -96,7 +97,7 @@ class CardRestController extends AbstractController
      *
      * @return View|JsonResponse
      */
-    public function createCard(Request $request)
+    public function createCard(Request $request) : View
     {
 
         $data = json_decode(
@@ -108,24 +109,53 @@ class CardRestController extends AbstractController
 
         $form->submit($data);
 
-        if (false === $form->isValid()) {
-            return new JsonResponse(
-                [
-                    'status' => 'error',
-                ]
-            );
+        if (false !== $form->isValid()) {
+
+            $card = $form->getData();
+
+            $card->setStatus(Card::STATUS_REQUESTED);
+
+            $this->entityManager->persist($card);
+            $this->entityManager->flush();
+
+            return new View($card);
         }
 
-        $card = $form->getData();
+        return new View(
+            [
+                'status' => 'error',
+            ]
+        );
 
-        $card->setStatus(Card::STATUS_REQUESTED);
+
+    }
+
+    /**
+     *  Get.
+     * @Route("/cards/{id}", methods={"GET"})
+     * @SWG\Get(
+     *     tags={"Cards"},
+     *     summary="Get single card",
+     *     produces={"application/json"},
+     *     @SWG\Response(
+     *          response=200,
+     *          description="Success",
+     *          @SWG\Schema(ref=@Model(type=Card::class))
+     *      ),
+     *      @SWG\Response(
+     *          response=404, description="Data invalid"
+     *      )
+     *  )
+     * @param $id
+     *
+     * @return View
+     */
+    public function getCard($id): View
+    {
+        $card = $this->getDoctrine()->getRepository(Card::class)->find($id);
 
 
-
-        $this->entityManager->persist($card);
-        $this->entityManager->flush();
-
-        return new View($data);
+        return new View($card, http_response_code(200));
 
     }
 
@@ -156,7 +186,7 @@ class CardRestController extends AbstractController
      * @param $id
      * @param Request $request
      *
-     * @return View
+     * @return View|JsonResponse
      */
     public function editCard(Request $request, $id): View
     {
@@ -191,7 +221,7 @@ class CardRestController extends AbstractController
         $this->entityManager->persist($card);
         $this->entityManager->flush();
 
-        return new View($data);
+        return new View($card);
 
     }
 
@@ -221,7 +251,6 @@ class CardRestController extends AbstractController
 
         $statusRequested = $request->request->get('status');
 
-
         $form = $this->createForm(CardType::class, $card);
 
         if($statusRequested === '0') {
@@ -239,7 +268,11 @@ class CardRestController extends AbstractController
         $this->entityManager->persist($card);
         $this->entityManager->flush();
 
+
+
         return new View($card);
+
+
     }
 
     /**

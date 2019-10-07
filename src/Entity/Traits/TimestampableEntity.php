@@ -12,16 +12,16 @@ use JMS\Serializer\Annotation as JMS;
 trait TimestampableEntity
 {
     /**
-     * @var \DateTime $createdAt
-     *
+     * @var \DateTime|null $createdAt
+     * @JMS\Expose()
      * @ORM\Column(type="datetime", nullable=true)
      *
      */
     private $createdAt;
 
     /**
-     * @var \DateTime $updatedAt
-     *
+     * @var \DateTime|null $updatedAt
+     * @JMS\Expose()
      * @ORM\Column(type="datetime", nullable=true)
      *
      */
