@@ -9,17 +9,31 @@ html {
     &:after {
         box-sizing: inherit;
     }
-  }
-
+}
 
 // remove all margins and paddings
 body,
-h1, h2, h3, h4, h5, h6,
-p, blockquote, pre,
-dl, dd, ol, ul,
-form, fieldset, legend,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+dl,
+dd,
+ol,
+ul,
+form,
+fieldset,
+legend,
 figure,
-table, th, td, caption,
+table,
+th,
+td,
+caption,
 hr {
     margin: 0;
     padding: 0;
@@ -42,47 +56,71 @@ a {
 }
 
 // default spacing between elements
-h1, h2, h3, h4, h5, h6,
-ul, ol, dl, img,
-blockquote, p, address,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+dl,
+img,
+blockquote,
+p,
+address,
 hr,
 table,
-fieldset, figure,
+fieldset,
+figure,
 pre {
     margin-bottom: $spacing-unit;
 }
 
-ul, ol,
+ul,
+ol,
 dd {
     margin-left: $spacing-unit;
 }
 
-
 // global override header styles
 h1 {
-  font-weight: $weight-bold;
-  font-size: $font-size-huge;
-  letter-spacing: -0.75px;
+    font-weight: $weight-bold;
+    font-size: $font-size-huge;
+    letter-spacing: -0.75px;
 }
 h2 {
     font-weight: $weight-bold;
     font-size: $font-size-big;
     letter-spacing: -0.5px;
-  }
+}
 
 h3 {
-  font-weight: $weight-bold;
-  font-size: $font-size-big;
-  color: $color-blue;
-  letter-spacing: -0.5px;
+    font-weight: $weight-bold;
+    font-size: $font-size-big;
+    color: $color-blue;
+    letter-spacing: -0.5px;
 }
 
 h4 {
-  font-weight: $weight-normal;
-  font-size: $font-size-big;
-  letter-spacing: -0.5px
+    font-weight: $weight-normal;
+    font-size: $font-size-big;
+    letter-spacing: -0.5px;
 }
 
 strong {
     font-weight: $weight-bold;
+}
+
+input,
+select {
+    height: 40px;
+    padding: 0px 12px;
+    width: 100%;
+    border-width: 0px;
+    border: 1px solid #a5a5a5;
+}
+
+select {
+    background-color: transparent;
 }

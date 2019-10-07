@@ -3,12 +3,13 @@ import {connect} from "react-redux";
 import {cardsFetchData, cardCreate, cardEdit} from "../../../store/actions/cardActions";
 import _ from "lodash";
 import * as cardService from "../../../services/card/cardService";
-import {Formik, Field,  Form} from "formik";
+import {Formik, Field, Form, ErrorMessage} from "formik";
+import * as Yup from 'yup';
+
 import projectJSON from "../../../shared/json/projects.json";
 import priorityJSON from "../../../shared/json/priority.json";
 import categoryJSON from "../../../shared/json/category.json";
 import assigneeJSON from "../../../shared/json/assignee.json";
-
 import Button from "../../../components/UI/Button/Button";
 import classes from "./FormConfig.module.scss";
 import moment from 'moment';
@@ -72,14 +73,26 @@ class FormConfig extends Component {
                     initialValues={
                         this.state
                     }
+                    validationSchema={Yup.object().shape({
+                        title: Yup.string()
+                            .required('This field required')
+                            .min(3, 'Title must be at least 3 characters')
+                            .max(150, 'Title must be at least 150 characters'),
+                        description: Yup.string()
+                            .required('This field required')
+                            .min(3, 'Title must be at least 3 characters')
+                            .max(450, 'Title must be at least 450 characters'),
+                        assignee: Yup.string()
+                            .ensure()
+                    })}
                     onSubmit={
                         (values, {setSubmitting}) => {
                             console.log(values.title)
                             this.props.type === "edit" ? setTimeout(() => {
                                 cardService.editCard(this.props.cardEditId, values).then(response => {
                                     console.log(response);
-                                    const data = JSON.parse(response.config.data);
-                                    console.log(data);
+                                    const data = response.data;
+                                    console.log(response.data);
                                     this.props.editCard(this.props.cardEditId, data);
                                 });
                             }, 400) : cardService.createCard(values).then(response => {
@@ -95,24 +108,6 @@ class FormConfig extends Component {
                             }, 400);
                         }
                     }
-                    validate={values => {
-
-                        console.log(values.title.length)
-                        const errors = {};
-
-                        console.log(errors)
-                            if (!values.title) {
-                                errors.title = "Required";
-                            }
-                            if (values.title.length <= 3) {
-                                errors.title = "Enter title longer than 3 characters";
-                            }
-                
-                            if (values.title.length >= 150) {
-                                errors.title = "Title is limited to 150 characters";
-                            }
-                        }
-                    }
                     render={
                         ({values,
                             errors,
@@ -126,6 +121,7 @@ class FormConfig extends Component {
                                 <div className={
                                     classes.FormConfigGroup
                                 }>
+                                    <div>
                                     <Field type="text" name="title" label="Title" placeholder="Title"
                                         value={
                                             this.state.title
@@ -136,7 +132,32 @@ class FormConfig extends Component {
                                         className={
                                             classes.FormConfigField
                                         }/>
-                                        {errors.title && touched.title && <div>{errors.title}</div>}
+                                        <ErrorMessage name="title" component="div" className="invalid-feedback" />
+                                    </div>
+
+                                    <Field type="text" name="description" placeholder="Description"
+                                        value={
+                                            this.state.description
+                                        }
+                                        onChange={
+                                            e => this.handleChange(e, "description")
+                                        }
+                                        className={
+                                            classes.FormConfigField
+                                        }/>
+
+                                    <Field component="select" name="assignee" placeholder="Assignee" value={
+                                            this.state.assignee
+                                        } onChange={
+                                            e => this.handleChange(e, "assignee")
+                                        } className={
+                                            classes.FormConfigField
+                                        }>
+                                             <option value={null}>Select assignee</option>
+                                        {assigneeJSON.map(assignee => (
+                                            <option key={assignee.value} value={assignee.value}>{assignee.label}</option>
+                                        ))}
+                                    </Field>
 
                                     <Field component="select" name="project" placeholder="Project" value={
                                             this.state.project
@@ -164,21 +185,11 @@ class FormConfig extends Component {
                                         ))}
                                     </Field>
                                         
-                                    <Field component="select" name="assignee" placeholder="Assignee" value={
-                                            this.state.assignee
-                                        } onChange={
-                                            e => this.handleChange(e, "assignee")
-                                        } className={
-                                            classes.FormConfigField
-                                        }>
-                                             <option value=''>Select assignee</option>
-                                        {assigneeJSON.map(assignee => (
-                                            <option key={assignee.value} value={assignee.value}>{assignee.label}</option>
-                                        ))}
-                                    </Field>
-
                                     <Field type="date"
-                                        min={moment(new Date()).format('YYYY-MM-DD')}
+                                    
+                                        min={moment(new Date()).format
+                                        // moment(new Date()).format('YYYY-MM-DD')
+                                    }
                                         name="dueDate" placeholder="Due Date"
                                         value={
                                             this.state.dueDate
@@ -202,17 +213,6 @@ class FormConfig extends Component {
                                             <option key={category.value} value={category.value}>{category.label}</option>
                                         ))}
                                     </Field>
-
-                                    <Field type="text" name="description" placeholder="Description"
-                                        value={
-                                            this.state.description
-                                        }
-                                        onChange={
-                                            e => this.handleChange(e, "description")
-                                        }
-                                        className={
-                                            classes.FormConfigField
-                                        }/>
                                 </div>
 
                                 <Button type="submit"
@@ -233,6 +233,25 @@ class FormConfig extends Component {
                                         className={
                                             classes.FormConfigField
                                         }/>
+
+                                    <Field type="text" name="description" placeholder="Description"
+                                        onChange={
+                                            e => this.handleChange(e, "description")
+                                        }
+                                        className={
+                                            classes.FormConfigField
+                                        }/>
+
+                                    <Field component="select" name="assignee" placeholder="Assignee" onChange={
+                                            e => this.handleChange(e, "assignee")
+                                        } className={
+                                            classes.FormConfigField
+                                        }>
+                                            <option value=''>Select assignee</option>
+                                        {assigneeJSON.map(assignee => (
+                                            <option key={assignee.value} value={assignee.value}>{assignee.label}</option>
+                                        ))}
+                                    </Field>
 
                                     <Field component="select" name="project" placeholder="Project" onChange={
                                             e => this.handleChange(e, "project")
@@ -256,19 +275,8 @@ class FormConfig extends Component {
                                         ))}
                                     </Field>
 
-                                    <Field component="select" name="assignee" placeholder="Assignee" onChange={
-                                            e => this.handleChange(e, "assignee")
-                                        } className={
-                                            classes.FormConfigField
-                                        }>
-                                            <option value=''>Select assignee</option>
-                                        {assigneeJSON.map(assignee => (
-                                            <option key={assignee.value} value={assignee.value}>{assignee.label}</option>
-                                        ))}
-                                    </Field>
-
                                     <Field type="date" name="dueDate" placeholder="Due Date"  
-                                        min={moment(new Date()).format('YYYY-MM-DD')}
+                                        min={moment(new Date()).format}
                                         onChange={
                                             e => this.handleChange(e, "dueDate")
                                         }
@@ -286,16 +294,6 @@ class FormConfig extends Component {
                                             <option key={category.value} value={category.value}>{category.label}</option>
                                         ))}
                                     </Field>
-
-
-                                    <Field type="text" name="description" placeholder="Description"
-
-                                        onChange={
-                                            e => this.handleChange(e, "description")
-                                        }
-                                        className={
-                                            classes.FormConfigField
-                                        }/>
                                 </div>
                                 <div className={
                                     classes.FormConfigButton

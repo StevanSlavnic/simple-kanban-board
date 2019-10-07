@@ -149,16 +149,15 @@ class Card
     public function getPriorityName(): ?string
     {
 
-
-        if($this->getPriority() == 'high') {
-            return 'High';
-        } elseif ($this->getPriority() == 'medium') {
-            return 'Medium';
-        } else {
-            return 'Low';
+        $json = file_get_contents('../frontend/src/shared/json/priority.json');
+        $priorities = json_decode($json);
+        foreach ($priorities as $priority) {
+            if ($priority->value == $this->getPriority()) {
+                return $priority->label;
+            }
         }
 
-
+        return null;
     }
 
     public function getAssignee(): ?string
