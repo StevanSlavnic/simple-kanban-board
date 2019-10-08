@@ -19,20 +19,6 @@ class CardRepository extends ServiceEntityRepository
         parent::__construct($registry, Card::class);
     }
 
-    // /**
-    //  * @return Card[] Returns an array of Card objects
-    //  */
-//    public function findByStatus($value)
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.status = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.updatedAt', 'DESC')
-//            ->getQuery()
-//            ->getResult()
-//            ;
-//    }
-
     public function findAllById()
     {
         return $this->createQueryBuilder('c')
@@ -41,24 +27,4 @@ class CardRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
-
-
-//    public function findOneBySomeField($value): ?Card
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->select('c')
-//            ->addSelect("(CASE WHEN c.priority like 'high' THEN 0
-//           WHEN c.priority like 'medium' THEN 1
-//           WHEN c.priority like 'low' THEN 2
-//           ELSE 999 END) AS HIDDEN fixed_order")
-//            ->andWhere('c.priority IN (:priority)')
-//            ->setParameters(array(
-//                'priority' => array('high', 'medium', 'low')))
-//            ->orderBy('fixed_order', 'ASC')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
-
 }

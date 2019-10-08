@@ -1,5 +1,15 @@
 [
-  { "label": "Karl Marx", "value": "karl-marx", "image": "../../assets/images/users/marx.jpeg"},
-  { "label": "Fridrih Engels", "value": "friedrih-engels", "image": "../../assets/images/users/engels.jpeg" },
-  { "label": "Vladimir Lenin", "value": "valdimir-lenin", "image": "../../assets/images/users/lenin.jpeg" }
+    {
+        "label": "Karl Marx",
+        "value": "karl-marx",
+        "image": "../../assets/images/users/marx.jpeg"
+    }, {
+        "label": "Fridrih Engels",
+        "value": "friedrih-engels",
+        "image": "../../assets/images/users/engels.jpeg"
+    }, {
+        "label": "Vladimir Lenin",
+        "value": "vladimir-lenin",
+        "image": "../../assets/images/users/lenin.jpeg"
+    }
 ]

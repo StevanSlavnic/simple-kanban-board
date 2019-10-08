@@ -54,23 +54,7 @@ class CardRestController extends AbstractController
 
         $cards = $repository->findAllById();
 
-        /** todo: Make response by status of cards */
-//        $statusRequestedCards = $repository->findByStatus(Card::STATUS_REQUESTED);
-//
-//        $statusInProgressCards = $repository->findByStatus(Card::STATUS_IN_PROGRESS);
-//
-//        $statusDoneCards = $repository->findByStatus(Card::STATUS_DONE);
-
         return new View($cards, http_response_code(200));
-
-//        return new View(
-        /** todo: Make response by status of cards */
-//        array(
-//            'statusRequested' => $statusRequestedCards,
-//            'statusInProgress' => $statusInProgressCards,
-//            'statusDone' => $statusDoneCards
-//        )
-//        );
     }
 
     /**
@@ -100,7 +84,6 @@ class CardRestController extends AbstractController
      */
     public function createCard(Request $request) : View
     {
-
         $data = json_decode(
             $request->getContent(),
             true
@@ -127,8 +110,6 @@ class CardRestController extends AbstractController
                 'status' => 'error',
             ]
         );
-
-
     }
 
     /**
@@ -188,7 +169,6 @@ class CardRestController extends AbstractController
      */
     public function editCard(Request $request, $id): View
     {
-
         $card = $this->getDoctrine()->getRepository(Card::class)->find($id);
 
         if(!$card) {
@@ -220,7 +200,6 @@ class CardRestController extends AbstractController
         $this->entityManager->flush();
 
         return new View($card, http_response_code(200));
-
     }
 
     /**

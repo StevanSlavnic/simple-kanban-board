@@ -50,7 +50,6 @@ class App extends React.PureComponent {
       </Layout>
     );
 
-    // console.log(this.props);
     return (
       // @TODO h1 loader is just a placeholder
       <React.Fragment>

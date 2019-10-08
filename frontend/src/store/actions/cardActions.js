@@ -1,15 +1,12 @@
 export function cardCreate(card) {
-    console.log(card);
     return {type: "CARD_CREATE", card};
 }
 
 export function cardEditing(id, card) {
-    console.log(card);
     return {type: "CARD_EDITING", id, card};
 }
 
 export function cardStatusUpdate(id, status) {
-    console.log(status);
     return {type: "CARD_STATUS_UPDATE", id, status};
 }
 

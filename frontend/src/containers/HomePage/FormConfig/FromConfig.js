@@ -59,7 +59,6 @@ class FormConfig extends Component {
             }, 500);
         }
 
-        console.log()
     }
 
     handleChange(e, field) {
@@ -92,12 +91,9 @@ class FormConfig extends Component {
                     })}
                     onSubmit={
                         (values, {setSubmitting}) => {
-                            console.log(values.title)
                             this.props.type === "edit" ? setTimeout(() => {
                                 cardService.editCard(this.props.cardEditId, values).then(response => {
-                                    console.log(response);
                                     const data = response.data;
-                                    console.log(response.data);
                                     this.props.editCard(this.props.cardEditId, data);
                                 });
                             }, 400) : cardService.createCard(values).then(response => {
@@ -107,7 +103,6 @@ class FormConfig extends Component {
 
                             const closeModal = () => this.props.type === "edit" ? this.props.onCloseEdit() : this.props.onClose();
                             setTimeout(() => {
-                                console.log(JSON.stringify(values, null, 2));
                                 setSubmitting(false);
                                 closeModal();
                             }, 400);
