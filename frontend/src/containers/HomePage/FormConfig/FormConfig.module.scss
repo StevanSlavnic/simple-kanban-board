@@ -1,1 +1,11 @@
 @import "../../../sass/settings/settings.colors";
+
+.FormControl {
+    margin-bottom: 20px;
+
+    .FormInputError {
+        margin-top: 2px;
+        color: $color-red;
+        text-align: left;
+    }
+}

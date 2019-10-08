@@ -21,10 +21,6 @@ export function cardsAreLoading(bool) {
     return {type: "CARDS_ARE_LOADING", isLoading: bool};
 }
 
-export function cardsFetchDataFiltered(cards) {
-    return {type: "CARDS_FETCH_DATA_FILTERED", cards};
-}
-
 export function cardsFetchDataSuccess(cards) {
     return {type: "CARDS_FETCH_DATA_SUCCESS", cards};
 }

@@ -15,7 +15,7 @@ class Header extends Component {
 
     render() {
         return (
-            <div className={
+            <header className={
                 classes.Header
             }>
                 <div className={
@@ -35,7 +35,7 @@ class Header extends Component {
                     </div>
                 </div>
 
-            </div>
+            </header>
         );
     }
 }
