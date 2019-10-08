@@ -6,26 +6,40 @@ import Card from "./../../../components/UI/Card/Card";
 import classes from "./Modal.module.scss";
 
 const Modal = React.forwardRef((props, ref) => {
-  // console.log(props)
-
-  return (
-    <ModalUI
-      {...props}
-      ref={ref}
-      className={classes.Modal}
-      open={props.open}
-      onClose={() => {
-        props.onClose();
-      }}
-    >
-      <Card className={[classes.Card, props.className].join(" ")}>
-        <IconButton className={classes.CloseButton} onClick={props.onClose}>
-          <img className={classes.Icon} src={Delete} alt="X mark" />
-        </IconButton>
-        {props.children}
-      </Card>
-    </ModalUI>
-  );
+    return (
+        <ModalUI {...props}
+            ref={ref}
+            className={
+                classes.Modal
+            }
+            open={
+                props.open
+            }
+            onClose={
+                () => {
+                    props.onClose();
+                }
+        }>
+            <Card className={
+                [classes.Card, props.className].join(" ")
+            }>
+                <IconButton className={
+                        classes.CloseButton
+                    }
+                    onClick={
+                        props.onClose
+                }>
+                    <img className={
+                            classes.Icon
+                        }
+                        src={Delete}
+                        alt="X mark"/>
+                </IconButton>
+                {
+                props.children
+            } </Card>
+        </ModalUI>
+    );
 });
 
 export default Modal;

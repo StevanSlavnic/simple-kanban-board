@@ -2,16 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f388231e-0b2c-4738-8250-2a39cabd8126" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cf1c6e76-287e-4f7d-a047-99c002893ff8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cf1c6e76-287e-4f7d-a047-99c002893ff8.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/KanbanCard/KanbanCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/KanbanCard/KanbanCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/containers/HomePage/FormConfig/FormConfig.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/containers/HomePage/FormConfig/FormConfig.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/cypress/integration/App.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/cypress/integration/App.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/cypress/integration/examples/actions.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/cypress/integration/examples/aliasing.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/cypress/integration/examples/assertions.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/cypress/integration/examples/connectors.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/cypress/integration/examples/cookies.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/cypress/integration/examples/cypress_api.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/cypress/integration/examples/files.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/cypress/integration/examples/local_storage.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/cypress/integration/examples/location.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/cypress/integration/examples/misc.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/cypress/integration/examples/navigation.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/cypress/integration/examples/network_requests.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/cypress/integration/examples/querying.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/cypress/integration/examples/spies_stubs_clocks.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/cypress/integration/examples/traversal.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/cypress/integration/examples/utilities.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/cypress/integration/examples/viewport.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/cypress/integration/examples/waiting.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/cypress/integration/examples/window.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/cypress/plugins/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/cypress/plugins/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/cypress/support/commands.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/cypress/support/commands.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/UI/Modal/Modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UI/Modal/Modal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/containers/HomePage/FormConfig/FromConfig.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/containers/HomePage/FormConfig/FromConfig.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/containers/HomePage/HomePage.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/containers/HomePage/HomePage.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/sass/generic/_generic.reset.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/sass/generic/_generic.reset.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/serviceWorker.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/serviceWorker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/services/card/cardService.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/services/card/cardService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/shared/json/assignee.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/shared/json/assignee.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/store/actions/cardActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/actions/cardActions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/store/reducers/cardReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/reducers/cardReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Card/Card.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Card/Card.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/utils/redirectTo.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Card/CardRestController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Card/CardRestController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repository/CardRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/CardRepository.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -290,7 +313,7 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/infodepot-develop" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -346,17 +369,7 @@
     <option name="allServicesViewState">
       <serviceView>
         <treeState>
-          <expand>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@c25b4423" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-            </path>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@c25b4423" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@4bd21111" type="9fbbdea:ServiceModel$ServiceNode" />
-            </path>
-          </expand>
+          <expand />
           <select />
         </treeState>
       </serviceView>
@@ -375,7 +388,7 @@
       <workItem from="1570126496512" duration="15134000" />
       <workItem from="1570199193582" duration="3542000" />
       <workItem from="1570269897775" duration="7391000" />
-      <workItem from="1570304997267" duration="14772000" />
+      <workItem from="1570304997267" duration="15965000" />
     </task>
     <servers />
   </component>

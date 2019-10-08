@@ -1,18 +1,13 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {cardsFetchData, cardUpdate, cardEditing, cardsFetchDataFiltered, cardRemove} from "../../store/actions/cardActions";
+import {cardsFetchData, cardUpdate, cardEditing, cardRemove} from "../../store/actions/cardActions";
 import * as cardService from "../../services/card/cardService";
-import FromConfig from "./FormConfig/FromConfig";
 import * as _ from "lodash";
-// import { Formik } from "formik";
-// import { FormikTextField } from "formik-material-fields";
 
 import KanbanCard from "../../components/KanbanCard/KanbanCard";
 import Button from "../../components/UI/Button/Button";
 import Modal from "../../components/UI/Modal/Modal";
 import FormConfig from './FormConfig/FromConfig';
-import IconButton from "@material-ui/core/IconButton";
-import Reset from "../../assets/images/icons/close_icon.svg";
 import classes from "./HomePage.module.scss";
 
 class HomePage extends Component {
@@ -57,7 +52,6 @@ class HomePage extends Component {
         this.setState({cardEditId: id});
         setTimeout(() => {
             cardService.getCard(this.state.cardEditId).then(response => {
-                console.log(response.data)
                 this.setState({card: response.data});
             }).catch(error => {
                 console.log(error.data);
@@ -78,13 +72,11 @@ class HomePage extends Component {
 
     getCardId(id) {
         const cardId = id;
-
         return cardId;
     }
 
     getCardEditId(id) {
         const cardEditId = id;
-
         return cardEditId;
     }
 
@@ -117,7 +109,6 @@ class HomePage extends Component {
         this.setState({cardMoveId: id})
     }
 
-
     render() {
 
             const {cards: {
@@ -125,8 +116,6 @@ class HomePage extends Component {
                 }} = this.props;
 
             const card = this.state.card;
-
-            console.log(this.props.cards)
 
             const cardsRequest = _.filter(this.props.cards.cards, {"status": "0"});
             const cardsRequestRender = cardsRequest && cardsRequest.map(card => {
@@ -244,6 +233,7 @@ class HomePage extends Component {
 
 
         return (
+            
 
             <div className={
                 classes.KanbanPageWrap
@@ -268,7 +258,6 @@ class HomePage extends Component {
                         classes.KanbanFieldsWrap
                     }>
 
-
                         <div className={
                                 classes.KanbanCardsStatus
                             }
@@ -278,7 +267,7 @@ class HomePage extends Component {
                             onDrop={
                                 () => this.handleDrop(0)
                         }>
-                            <h2>To Do</h2>
+                            <h2>Requested</h2>
                             <div>{cardsRequestRender}</div>
                         </div>
 
@@ -318,9 +307,7 @@ class HomePage extends Component {
                     onClose={
                         this.closeModal
                     }
-                    className={
-                        classes.AdminPanelModalWide
-                }>
+                    >
                     <FormConfig cards={
                             this.state.cards
                         }

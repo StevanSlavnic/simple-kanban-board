@@ -27,8 +27,6 @@ class FormConfig extends Component {
             category: "",
             description: ""
         }
-
-        console.log(props)
     }
 
     UNSAFE_componentWillReceiveProps(nextProps) {
@@ -60,11 +58,14 @@ class FormConfig extends Component {
                 });
             }, 500);
         }
+
     }
 
     handleChange(e, field) {
         this.setState({[field]: e.target.value});
     }
+
+
 
     render() {
         return (
@@ -75,24 +76,24 @@ class FormConfig extends Component {
                     }
                     validationSchema={Yup.object().shape({
                         title: Yup.string()
-                            .required('This field required')
+                            .required('This field is required')
                             .min(3, 'Title must be at least 3 characters')
                             .max(150, 'Title must be at least 150 characters'),
                         description: Yup.string()
-                            .required('This field required')
+                            .required('This field is required')
                             .min(3, 'Title must be at least 3 characters')
                             .max(450, 'Title must be at least 450 characters'),
-                        assignee: Yup.string()
-                            .ensure()
+                        assignee: Yup.string().required('This field is required'),
+                        project: Yup.string().required('This field is required'),
+                        priority: Yup.string().required('This field is required'),
+                        dueDate: Yup.string().required('This field is required'),
+                        category: Yup.string().required('This field is required')
                     })}
                     onSubmit={
                         (values, {setSubmitting}) => {
-                            console.log(values.title)
                             this.props.type === "edit" ? setTimeout(() => {
                                 cardService.editCard(this.props.cardEditId, values).then(response => {
-                                    console.log(response);
                                     const data = response.data;
-                                    console.log(response.data);
                                     this.props.editCard(this.props.cardEditId, data);
                                 });
                             }, 400) : cardService.createCard(values).then(response => {
@@ -102,117 +103,124 @@ class FormConfig extends Component {
 
                             const closeModal = () => this.props.type === "edit" ? this.props.onCloseEdit() : this.props.onClose();
                             setTimeout(() => {
-                                console.log(JSON.stringify(values, null, 2));
                                 setSubmitting(false);
                                 closeModal();
                             }, 400);
                         }
                     }
                     render={
-                        ({values,
-                            errors,
-                            status,
-                            touched,
-                            handleBlur,
-                            handleChange,
-                            handleSubmit,
-                            isSubmitting,}) => this.props.type === "edit" ? (
+                        ({isSubmitting}) => this.props.type === "edit" ? (
                             <Form>
                                 <div className={
                                     classes.FormConfigGroup
                                 }>
-                                    <div>
-                                    <Field type="text" name="title" label="Title" placeholder="Title"
-                                        value={
-                                            this.state.title
-                                        }
-                                        onChange={
-                                            e => this.handleChange(e, "title")
-                                        }
-                                        className={
-                                            classes.FormConfigField
-                                        }/>
-                                        <ErrorMessage name="title" component="div" className="invalid-feedback" />
+                                    <div className={classes.FormControl}>
+                                        <Field type="text" name="title" label="Title" placeholder="Title"
+                                            value={
+                                                this.state.title
+                                            }
+                                            onChange={
+                                                e => this.handleChange(e, "title")
+                                            }
+                                            className={
+                                                classes.FormConfigField
+                                            }/>
+                                        <ErrorMessage name="title" component="div" className={classes.FormInputError} />
                                     </div>
 
-                                    <Field type="text" name="description" placeholder="Description"
-                                        value={
-                                            this.state.description
-                                        }
-                                        onChange={
-                                            e => this.handleChange(e, "description")
-                                        }
-                                        className={
-                                            classes.FormConfigField
-                                        }/>
+                                    <div className={classes.FormControl}>
+                                        <Field type="text" name="description" placeholder="Description"
+                                            value={
+                                                this.state.description
+                                            }
+                                            onChange={
+                                                e => this.handleChange(e, "description")
+                                            }
+                                            className={
+                                                classes.FormConfigField
+                                            }/>
+                                        <ErrorMessage name="description" component="div" className={classes.FormInputError} />
+                                    </div>
 
-                                    <Field component="select" name="assignee" placeholder="Assignee" value={
-                                            this.state.assignee
-                                        } onChange={
-                                            e => this.handleChange(e, "assignee")
-                                        } className={
-                                            classes.FormConfigField
-                                        }>
-                                             <option value={null}>Select assignee</option>
-                                        {assigneeJSON.map(assignee => (
-                                            <option key={assignee.value} value={assignee.value}>{assignee.label}</option>
-                                        ))}
-                                    </Field>
+                                    <div className={classes.FormControl}>
+                                        <Field component="select" name="assignee" placeholder="Assignee" value={
+                                                this.state.assignee
+                                            } onChange={
+                                                e => this.handleChange(e, "assignee")
+                                            } className={
+                                                classes.FormConfigField
+                                            }>
+                                                <option value={null} label="Select assignee"></option>
+                                            {assigneeJSON.map(assignee => (
+                                                <option key={assignee.value} value={assignee.value}>{assignee.label}</option>
+                                            ))}
+                                        </Field>
+                                        <ErrorMessage name="assignee" component="div" className={classes.FormInputError} />
+                                    </div>
 
-                                    <Field component="select" name="project" placeholder="Project" value={
-                                            this.state.project
-                                        } onChange={
-                                            e => this.handleChange(e, "project")
-                                        } className={
-                                            classes.FormConfigField
-                                        }>
-                                             <option value=''>Select project</option>
-                                        {projectJSON.map(project => (
-                                            <option key={project.value} value={project.value}>{project.label}</option>
-                                        ))}
-                                    </Field>
+                                    <div className={classes.FormControl}>
+                                        <Field component="select" name="project" placeholder="Project" value={
+                                                this.state.project
+                                            } onChange={
+                                                e => this.handleChange(e, "project")
+                                            } className={
+                                                classes.FormConfigField
+                                            }>
+                                                <option value=''>Select project</option>
+                                            {projectJSON.map(project => (
+                                                <option key={project.value} value={project.value}>{project.label}</option>
+                                            ))}
+                                        </Field>
+                                        <ErrorMessage name="project" component="div" className={classes.FormInputError} />
+                                    </div>
 
-                                    <Field component="select" name="priority" placeholder="Priority" value={
-                                            this.state.priority
-                                        } onChange={
-                                            e => this.handleChange(e, "priority")
-                                        } className={
-                                            classes.FormConfigField
-                                        }>
-                                            <option value=''>Select priority</option>
-                                        {priorityJSON.map(priority => (
-                                            <option key={priority.value} value={priority.value}>{priority.label}</option>
-                                        ))}
-                                    </Field>
+                                    <div className={classes.FormControl}>
+                                        <Field component="select" name="priority" placeholder="Priority" value={
+                                                this.state.priority
+                                            } onChange={
+                                                e => this.handleChange(e, "priority")
+                                            } className={
+                                                classes.FormConfigField
+                                            }>
+                                                <option value=''>Select priority</option>
+                                            {priorityJSON.map(priority => (
+                                                <option key={priority.value} value={priority.value}>{priority.label}</option>
+                                            ))}
+                                        </Field>
+                                        <ErrorMessage name="priority" component="div" className={classes.FormInputError} />
+                                    </div>
                                         
-                                    <Field type="date"
-                                    
-                                        min={moment(new Date()).format
-                                        // moment(new Date()).format('YYYY-MM-DD')
-                                    }
-                                        name="dueDate" placeholder="Due Date"
-                                        value={
-                                            this.state.dueDate
-                                        }
-                                        onChange={
-                                            e => this.handleChange(e, "dueDate")
-                                        }
-                                        className={
-                                            classes.FormConfigField
-                                        }/>
+                                    <div className={classes.FormControl}>  
+                                        <Field type="date"
+                                            min={`${moment(new Date()).format}`}
+                                            name="dueDate" placeholder="Due Date"
+                                            value={
+                                                this.state.dueDate
+                                            }
+                                            onChange={
+                                                e => this.handleChange(e, "dueDate")
+                                            }
+                                            className={
+                                                classes.FormConfigField
+                                            }/>
+                                        <ErrorMessage name="dueDate" component="div" className={classes.FormInputError} />
+                                    </div>  
 
-                                    <Field component="select" name="category" placeholder="Category" value={
-                                            this.state.category
-                                        } onChange={
-                                            e => this.handleChange(e, "category")
-                                        } className={
-                                            classes.FormConfigField
-                                        }>
-                                            <option value=''>Select category</option>
-                                        {categoryJSON.map(category => (
-                                            <option key={category.value} value={category.value}>{category.label}</option>
-                                        ))}
-                                    </Field>
+                                    <div className={classes.FormControl}>
+                                        <Field component="select" name="category" placeholder="Category" value={
+                                                this.state.category
+                                            } onChange={
+                                                e => this.handleChange(e, "category")
+                                            } className={
+                                                classes.FormConfigField
+                                            }>
+                                                <option value=''>Select category</option>
+                                            {categoryJSON.map(category => (
+                                                <option key={category.value} value={category.value}>{category.label}</option>
+                                            ))}
+                                        </Field>
+                                        <ErrorMessage name="category" component="div" className={classes.FormInputError} />
+                                    </div>
                                 </div>
 
                                 <Button type="submit"
@@ -226,74 +234,96 @@ class FormConfig extends Component {
                                 <div className={
                                     classes.FormConfigGroup
                                 }>
-                                    <Field type="text" name="title" placeholder="Title"
-                                        onChange={
-                                            e => this.handleChange(e, "title")
-                                        }
-                                        className={
-                                            classes.FormConfigField
-                                        }/>
+                                    <div className={classes.FormControl}>
+                                        <Field type="text" name="title" placeholder="Title"
+                                            onChange={
+                                                e => this.handleChange(e, "title")
+                                            }
+                                            className={
+                                                classes.FormConfigField
+                                            }/>
+                                        <ErrorMessage name="title" component="div" className={classes.FormInputError} />    
+                                    </div>
 
-                                    <Field type="text" name="description" placeholder="Description"
-                                        onChange={
-                                            e => this.handleChange(e, "description")
-                                        }
-                                        className={
-                                            classes.FormConfigField
-                                        }/>
+                                    <div className={classes.FormControl}>
+                                        <Field type="text" name="description" placeholder="Description"
+                                            onChange={
+                                                e => this.handleChange(e, "description")
+                                            }
+                                            className={
+                                                classes.FormConfigField
+                                            }/>
+                                        <ErrorMessage name="description" component="div" className={classes.FormInputError} />
+                                    </div>
 
-                                    <Field component="select" name="assignee" placeholder="Assignee" onChange={
-                                            e => this.handleChange(e, "assignee")
-                                        } className={
-                                            classes.FormConfigField
-                                        }>
-                                            <option value=''>Select assignee</option>
-                                        {assigneeJSON.map(assignee => (
-                                            <option key={assignee.value} value={assignee.value}>{assignee.label}</option>
-                                        ))}
-                                    </Field>
 
-                                    <Field component="select" name="project" placeholder="Project" onChange={
-                                            e => this.handleChange(e, "project")
-                                        } className={
-                                            classes.FormConfigField
-                                        }>
-                                            <option value=''>Select project</option>
-                                        {projectJSON.map(project => (
-                                            <option key={project.value} value={project.value}>{project.label}</option>
-                                        ))}
-                                    </Field>
+                                    <div className={classes.FormControl}>
+                                        <Field component="select" name="assignee" placeholder="Assignee" onChange={
+                                                e => this.handleChange(e, "assignee")
+                                            } className={
+                                                classes.FormConfigField
+                                            }>
+                                                <option value=''>Select assignee</option>
+                                            {assigneeJSON.map(assignee => (
+                                                <option key={assignee.value} value={assignee.value}>{assignee.label}</option>
+                                            ))}
+                                        </Field>
+                                        <ErrorMessage name="assignee" component="div" className={classes.FormInputError} />
+                                    </div>        
 
-                                    <Field component="select" name="priority" placeholder="Priority" onChange={
-                                            e => this.handleChange(e, "priority")
-                                        } className={
-                                            classes.FormConfigField
-                                        }>
-                                            <option value=''>Select priority</option>
-                                        {priorityJSON.map(priority => (
-                                            <option key={priority.value} value={priority.value}>{priority.label}</option>
-                                        ))}
-                                    </Field>
+                                    <div className={classes.FormControl}>
+                                        <Field component="select" name="project" placeholder="Project" onChange={
+                                                e => this.handleChange(e, "project")
+                                            } className={
+                                                classes.FormConfigField
+                                            }>
+                                                <option value=''>Select project</option>
+                                            {projectJSON.map(project => (
+                                                <option key={project.value} value={project.value}>{project.label}</option>
+                                            ))}
+                                        </Field>
+                                        <ErrorMessage name="project" component="div" className={classes.FormInputError} />
+                                    </div>        
 
-                                    <Field type="date" name="dueDate" placeholder="Due Date"  
-                                        min={moment(new Date()).format}
-                                        onChange={
-                                            e => this.handleChange(e, "dueDate")
-                                        }
-                                        className={
-                                            classes.FormConfigField
-                                        }/>
+                                    <div className={classes.FormControl}>
+                                        <Field component="select" name="priority" placeholder="Priority" onChange={
+                                                e => this.handleChange(e, "priority")
+                                            } className={
+                                                classes.FormConfigField
+                                            }>
+                                                <option value=''>Select priority</option>
+                                            {priorityJSON.map(priority => (
+                                                <option key={priority.value} value={priority.value}>{priority.label}</option>
+                                            ))}
+                                        </Field>
+                                        <ErrorMessage name="priority" component="div" className={classes.FormInputError} />
+                                    </div>        
 
-                                    <Field component="select" name="category" placeholder="Category" onChange={
-                                            e => this.handleChange(e, "category")
-                                        } className={
-                                            classes.FormConfigField
-                                        }>
-                                            <option value=''>Select category</option>
-                                        {categoryJSON.map(category => (
-                                            <option key={category.value} value={category.value}>{category.label}</option>
-                                        ))}
-                                    </Field>
+                                    <div className={classes.FormControl}>
+                                        <Field type="date" name="dueDate" placeholder="Due Date"  
+                                            min={`${moment(new Date()).format}`}
+                                            onChange={
+                                                e => this.handleChange(e, "dueDate")
+                                            }
+                                            className={
+                                                classes.FormConfigField
+                                            }/>
+                                        <ErrorMessage name="dueDate" component="div" className={classes.FormInputError} />
+                                    </div>    
+
+                                    <div className={classes.FormControl}>
+                                        <Field component="select" name="category" placeholder="Category" onChange={
+                                                e => this.handleChange(e, "category")
+                                            } className={
+                                                classes.FormConfigField
+                                            }>
+                                                <option value=''>Select category</option>
+                                            {categoryJSON.map(category => (
+                                                <option key={category.value} value={category.value}>{category.label}</option>
+                                            ))}
+                                        </Field>
+                                        <ErrorMessage name="category" component="div" className={classes.FormInputError} />
+                                    </div>
                                 </div>
                                 <div className={
                                     classes.FormConfigButton

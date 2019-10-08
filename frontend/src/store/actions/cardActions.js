@@ -1,15 +1,12 @@
 export function cardCreate(card) {
-    console.log(card);
     return {type: "CARD_CREATE", card};
 }
 
 export function cardEditing(id, card) {
-    console.log(card);
     return {type: "CARD_EDITING", id, card};
 }
 
 export function cardStatusUpdate(id, status) {
-    console.log(status);
     return {type: "CARD_STATUS_UPDATE", id, status};
 }
 
@@ -19,10 +16,6 @@ export function cardDeleting(id) {
 
 export function cardsAreLoading(bool) {
     return {type: "CARDS_ARE_LOADING", isLoading: bool};
-}
-
-export function cardsFetchDataFiltered(cards) {
-    return {type: "CARDS_FETCH_DATA_FILTERED", cards};
 }
 
 export function cardsFetchDataSuccess(cards) {

@@ -15,12 +15,9 @@ const createCard = (state, payload) => {
 };
 
 const editCard = (state, payload) => {
-    console.log(payload);
     const newCards = state.cards.map((card, index) => { // Find the card with the matching id
         if (card.id === payload.id) {
             const payloadCopy = _.cloneDeep(payload);
-
-            console.log(payloadCopy);
             // Return a new object
             return {
                 ...card, // copy the existing card
@@ -34,13 +31,13 @@ const editCard = (state, payload) => {
                 due_date: payloadCopy.card.due_date,
                 category: payloadCopy.card.category,
                 category_name: payloadCopy.card.category_name,
-                description: payloadCopy.card.description
+                description: payloadCopy.card.description,
+                updated_at: payloadCopy.card.updated_at
             };
         }
         return card;
     });
     // Returns new state
-    console.log("Edit", newCards);
     return {
         ...state,
         cards: newCards
@@ -48,13 +45,9 @@ const editCard = (state, payload) => {
 };
 
 const updateStatusCard = (state, payload) => {
-    console.log(payload);
-
     const newCards = state.cards.map((card, index) => {
         if (card.id === payload.id) {
             const payloadCopy = _.cloneDeep(payload);
-            console.log(payloadCopy);
-
             return {
                 ...card, // copy the existing card
                 status: `${
@@ -65,7 +58,6 @@ const updateStatusCard = (state, payload) => {
         return card;
     });
     // Returns new state
-    console.log(newCards);
     return {
         ...state,
         cards: newCards
@@ -73,7 +65,6 @@ const updateStatusCard = (state, payload) => {
 };
 
 const removeCard = (state, payload) => {
-    console.log();
     const newCards = state.cards.filter(card => payload.id !== card.id);
     return {
         ...state,
@@ -87,18 +78,10 @@ const setCards = (state, payload) => {
     return stateCopy;
 };
 
-const setCardsFiltered = (state, payload) => {
-    const stateCopy = _.cloneDeep(state);
-    stateCopy.cards = payload.cards;
-    return stateCopy;
-};
-
 const reducer = (state = {}, action) => {
     switch (action.type) {
         case "CARDS_FETCH_DATA_SUCCESS":
             return setCards(state, action);
-        case "CARDS_FETCH_DATA_FILTERED":
-            return setCardsFiltered(state, action);
         case "CARD_DELETING":
             return removeCard(state, action);
         case "CARD_EDITING":
