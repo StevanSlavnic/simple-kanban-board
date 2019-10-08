@@ -1,0 +1,140 @@
+// Hover state
+@mixin hover-state {
+	&:hover {
+		cursor: pointer;
+		@content;
+	}
+}
+
+// buttons and divs hover
+@mixin background-hover($color, $color-hover, $important: false) {
+	transition: background-color $timing-default;
+	@if $important {
+		background-color: $color !important;
+	} @else {
+		background-color: $color;
+	}
+
+	@include hover-state {
+		@if $important {
+			background-color: $color-hover !important;
+		} @else {
+			background-color: $color-hover;
+		}
+
+		@content;
+	}
+}
+
+@mixin popup-hover() {
+	transition:   $timing-default;
+	transition-property: transform, box-shadow;
+	@include hover-state {
+		box-shadow: $shadow-hover;
+		transform: translateY(-2px);
+		@content;
+	}
+}
+
+// Links
+@mixin link-hover($color, $color-hover: $color) {
+	text-decoration: none;
+	transition: color $timing-default;
+	color: $color;
+
+	@include hover-state {
+		color: darken($color-hover, 20%);
+		@content;
+	}
+}
+
+// Nav links
+@mixin nav-link($color, $hover-color, $active: false) {
+	position: relative;
+	color: $color;
+	&:after {
+		transition: all .22s ease-in-out;
+		position: absolute;
+		top: 0;
+		left: 100%;
+		border-bottom: 2px solid $color-main;
+		width: 0;
+		height: 100%;
+		content: '';
+	}
+
+	@include hover-state {
+		color: $hover-color;
+
+		&:after {
+			width: 100%;
+			left: 0;
+		}
+	}
+
+	@if $active == true {
+		&:after {
+			width: 100%;
+			left: 0;
+		}
+	}
+}
+
+@mixin addRibbon($color: $color-main-light, $thickness: 3px) {
+	position: relative;
+	&:after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: $thickness;
+		background-color: $color;
+		transition: all .3s cubic-bezier(0.6, 0.2, 0.2, 1);
+	}
+}
+
+// ribbon animation
+@mixin animateRibbon($color: $color-blue) {
+	overflow: hidden;
+	&:after {
+		background-color: $color;
+
+		animation-name: leftToRight;
+		animation-duration: 1.3s;
+		animation-iteration-count: infinite;
+		animation-timing-function: cubic-bezier(0.6, 0.2, 0.2, 1);
+	}
+}
+
+@keyframes leftToRight {
+	0% {
+		left: 0;
+		width: 0;
+	}
+	50% {
+		left: 0;
+		width: 100%;
+	}
+	100% {
+		left: 100%;
+		width: 100%;
+	}
+}
+
+@mixin mq($type, $rezMin, $rezMax: null) {
+
+	@if ($type == 'from') {
+		@media only screen and (min-width: #{$rezMin}px) { @content; }
+	}
+
+	// ========= TO =========
+	@else if ($type == 'to') {
+			@media only screen and (max-width: #{$rezMin - 1}px) { @content; }
+	}
+
+	// ========= FROM TO =========
+	@else if ($type == 'fromto') {
+		@media only screen and (min-width: #{$rezMin}px) and (max-width: #{$rezMax - 1}px) { @content; }
+	}
+}

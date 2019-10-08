@@ -1,0 +1,52 @@
+/* autoprefixer grid: autoplace */
+
+@import "./sass/variables";
+@import "./sass/tools/tools.mixins";
+@import "./sass/generic/generic.reset";
+@import "./sass/generic/generic.fonts";
+
+html {
+  box-sizing: border-box;
+  background: $color-background;
+  color: $color-text-main;
+  font-size: $base-font-size;
+  height: 100%;
+  font-weight: 100;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+
+  #root {
+    width: inherit;
+    min-height: inherit;
+  }
+}
+
+section {
+  min-height: calc(100vh - 140px);
+  display: flex;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: lightgray;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgb(195, 195, 195);
+  border-radius: 15px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 15px;
+  -webkit-box-shadow: inset 0 0 6px rgba(219, 219, 219, 0.5);
+  background: $color-grey;
+}

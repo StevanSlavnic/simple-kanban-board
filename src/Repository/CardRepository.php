@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Card;
+use App\Entity\Card\Card;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
@@ -22,29 +22,43 @@ class CardRepository extends ServiceEntityRepository
     // /**
     //  * @return Card[] Returns an array of Card objects
     //  */
-    /*
-    public function findByExampleField($value)
+//    public function findByStatus($value)
+//    {
+//        return $this->createQueryBuilder('c')
+//            ->andWhere('c.status = :val')
+//            ->setParameter('val', $value)
+//            ->orderBy('c.updatedAt', 'DESC')
+//            ->getQuery()
+//            ->getResult()
+//            ;
+//    }
+
+    public function findAllById()
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
+            ->orderBy('c.id', 'DESC')
             ->getQuery()
             ->getResult()
-        ;
+            ;
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Card
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
+
+//    public function findOneBySomeField($value): ?Card
+//    {
+//        return $this->createQueryBuilder('c')
+//            ->select('c')
+//            ->addSelect("(CASE WHEN c.priority like 'high' THEN 0
+//           WHEN c.priority like 'medium' THEN 1
+//           WHEN c.priority like 'low' THEN 2
+//           ELSE 999 END) AS HIDDEN fixed_order")
+//            ->andWhere('c.priority IN (:priority)')
+//            ->setParameters(array(
+//                'priority' => array('high', 'medium', 'low')))
+//            ->orderBy('fixed_order', 'ASC')
+//            ->setParameter('val', $value)
+//            ->getQuery()
+//            ->getOneOrNullResult()
+//        ;
+//    }
+
 }

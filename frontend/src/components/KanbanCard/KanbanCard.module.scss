@@ -1,0 +1,14 @@
+@import "../../sass/variables";
+@import "../../sass/tools/tools.mixins";
+@import "../../sass/settings/settings.colors";
+
+.CardGeneral {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.CardLabel {
+  font-weight: 400;
+}

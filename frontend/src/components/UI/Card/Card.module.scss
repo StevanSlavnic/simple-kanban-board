@@ -1,0 +1,32 @@
+@import "../../../sass/variables";
+@import "../../../sass/tools/tools.mixins";
+
+.Card {
+  max-width: 570px;
+  padding: 56px 100px;
+  background-color: $color-white;
+  box-shadow: $shadow-main;
+
+  // default ribbon
+  @include addRibbon;
+
+  // list is declared in _settings.colors.scss
+  // "red" "blue" "green" "orange" "yellow" ...
+  // if we pass prop color with one name included in the list that color will be applied
+  @each $color in $colors {
+    &--#{nth($color, 1)} {
+      @include addRibbon(#{nth($color, 2)});
+    }
+  }
+}
+
+.NoRibbon {
+  &:after {
+    width: 0;
+  }
+}
+
+.CardLoading {
+  @include addRibbon;
+  @include animateRibbon;
+}

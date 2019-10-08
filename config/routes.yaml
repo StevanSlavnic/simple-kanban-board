@@ -1,5 +1,16 @@
-card_rest:
-    path: /
-    resource: 'Controller\CardRestController::index'
+#index:
+#    path: /
+#    resource: 'Controller\CardRestController::index'
+
+#app.swagger_ui:
+#  path: /api/doc
+#  methods: GET
+#  defaults: { _controller: nelmio_api_doc.controller.swagger_ui }
 
 
+# Controllers
+
+card.card.rest.controller:
+  resource: "Controller/Card/CardRestController.php"
+  type: annotation
+  prefix: /api/v1
